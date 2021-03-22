@@ -1,17 +1,14 @@
 import React from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { Header } from "./elems/header/Header"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { addUser, signInUser} from "../src/services/user-service/userService"
-
 
 function App() {
+  
+  const user = useSelector(state=> state.Autorization)
 
-  const dispatch = useDispatch()
-  // const cash = useSelector(state)
-
-  //dispatch()
-
+  console.log(user)
+  
   return (
     <>
       <Header />

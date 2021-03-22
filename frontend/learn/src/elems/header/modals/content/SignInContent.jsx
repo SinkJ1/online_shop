@@ -1,14 +1,19 @@
 import React, { useState } from "react"
 import { Form, Button } from "react-bootstrap"
+import { useDispatch } from "react-redux"
+import { signIn } from "../../../../store/reducers/user/UserReducer"
+
 
 const signInButtonName = "Войти"
 
-export const SignInContent = () => {
+export const SignInContent = (props) => {
 
     const [user, setUser] = useState({
         email: "",
         password: ""
     })
+
+    const dispatch = useDispatch()
 
     const onEmailChange = (e) => {
         setUser({ ...user, email: e.target.value })
@@ -19,6 +24,13 @@ export const SignInContent = () => {
     }
 
     const signInButtonHandler = (e) => {
+        const payload = {
+            user
+        }
+        
+        dispatch(signIn(payload))
+        
+        props.onHide()
         e.preventDefault()
     }
 

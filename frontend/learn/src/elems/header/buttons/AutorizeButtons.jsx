@@ -13,16 +13,20 @@ export const AutorizeButtons = () => {
     const [content, setContent] = useState();
     const [modalName, setModalName] = useState();
 
+    const onHide = (e) => {
+        setModalShow(false)
+    }
+
     const signInHandler = () => {
         setModalShow(true)
         setModalName(signInButtonName)
-        setContent(<SignInContent />)
+        setContent(<SignInContent onHide={onHide}/>)
     }
 
     const registrationHandler = () => {
         setModalShow(true)
         setModalName(registrationButtonName)
-        setContent(<RegistrationContent />)
+        setContent(<RegistrationContent onHide={onHide}/>)
     }
 
     return (
@@ -30,7 +34,7 @@ export const AutorizeButtons = () => {
             <AutorizeModal
                 show={modalShow}
                 operationname={modalName}
-                onHide={() => setModalShow(false)}
+                onHide={onHide}
                 content={content}
             />
             <Button variant="info" onClick={signInHandler}>{signInButtonName}</Button>{' '}
