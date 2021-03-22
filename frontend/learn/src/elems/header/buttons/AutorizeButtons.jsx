@@ -1,48 +1,40 @@
 import React, { useState } from "react"
-import { Button, Modal } from "react-bootstrap"
+import { Button } from "react-bootstrap"
+import { AutorizeModal } from "../modals/AutorizeModal";
+import { SignInContent } from "../modals/content/SignInContent";
+import { RegistrationContent } from "../modals/content/RegistrationContent";
+
+const signInButtonName = "Вход"
+const registrationButtonName = "Регистрация"
 
 export const AutorizeButtons = () => {
 
-
-    function MyVerticallyCenteredModal(props) {
-        return (
-            <Modal
-                {...props}
-                size="lg"
-                aria-labelledby="contained-modal-title-vcenter"
-                centered
-            >
-                <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">
-                        Modal heading
-              </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <h4>Centered Modal</h4>
-                    <p>
-                        Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                        dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                        consectetur ac, vestibulum at eros.
-              </p>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button onClick={props.onHide}>Войти</Button>
-                </Modal.Footer>
-            </Modal>
-        );
-    }
     const [modalShow, setModalShow] = useState(false);
+    const [content, setContent] = useState();
+    const [modalName, setModalName] = useState();
 
+    const signInHandler = () => {
+        setModalShow(true)
+        setModalName(signInButtonName)
+        setContent(<SignInContent />)
+    }
+
+    const registrationHandler = () => {
+        setModalShow(true)
+        setModalName(registrationButtonName)
+        setContent(<RegistrationContent />)
+    }
 
     return (
         <>
-      <MyVerticallyCenteredModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
-            <Button variant="info" onClick={() => setModalShow(true)}>Вход</Button>{' '}
-            <Button variant="info">Регистрация</Button>
+            <AutorizeModal
+                show={modalShow}
+                operationname={modalName}
+                onHide={() => setModalShow(false)}
+                content={content}
+            />
+            <Button variant="info" onClick={signInHandler}>{signInButtonName}</Button>{' '}
+            <Button variant="info" onClick={registrationHandler}>{registrationButtonName}</Button>
         </>
     )
-
 }
