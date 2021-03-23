@@ -1,7 +1,7 @@
 const defaultUser = {
     name: "",
     email: "",
-    logged: true
+    logged: false
 }
 
 const SIGNIN = "signIn"
