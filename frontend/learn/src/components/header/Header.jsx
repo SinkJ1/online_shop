@@ -1,11 +1,14 @@
 import React, { useState } from "react"
-
+import { useSelector } from "react-redux"
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from "react-bootstrap/esm/Button"
 import { Form } from 'react-bootstrap'
 import { AutorizeButtons } from "./buttons/AutorizeButtons"
+import { LoggedUserButton } from "./buttons/LoggedUserButton"
+
+const findButtonName = "Найти"
 
 const marginTop = "5px"
 
@@ -27,6 +30,7 @@ const findGroup = {
 export const Header = () => {
 
     const [text, setText] = useState()
+    const user = useSelector(state => state.autorization)
 
     return (
         <div style={headerStyle}>
@@ -37,7 +41,7 @@ export const Header = () => {
                     </Col>
                     <Col xs={{ order: 12 }}>
                         <div style={buttonGroup}>
-                            <AutorizeButtons/>
+                            {user.logged ? <LoggedUserButton /> : <AutorizeButtons />}
                         </div>
                     </Col>
                     <Col xs={{ order: 1 }}>
@@ -53,10 +57,9 @@ export const Header = () => {
                                             onChange={(e) => { setText(e.target.value) }}
                                         />
                                     </Col>
-
                                     <Col xs="auto">
                                         <Button className="mb-2" variant="info" onClick={() => console.log(text)}>
-                                            Найти
+                                            {findButtonName}
                                         </Button>
                                     </Col>
                                 </Form.Row>

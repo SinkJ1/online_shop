@@ -5,6 +5,8 @@ import { signIn } from "../../../../store/reducers/user/UserReducer"
 
 
 const signInButtonName = "Войти"
+const passwordLable = "Password"
+const eMailLable = "Email address"
 
 export const SignInContent = (props) => {
 
@@ -27,9 +29,9 @@ export const SignInContent = (props) => {
         const payload = {
             user
         }
-        
+
         dispatch(signIn(payload))
-        
+
         props.onHide()
         e.preventDefault()
     }
@@ -38,13 +40,13 @@ export const SignInContent = (props) => {
         <>
             <Form>
                 <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
+                    <Form.Label>{eMailLable}</Form.Label>
                     <Form.Control type="email" placeholder="Enter email" value={user.email} onChange={onEmailChange} />
                     <Form.Text className="text-muted">
-                </Form.Text>
+                    </Form.Text>
                 </Form.Group>
                 <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label>{passwordLable}</Form.Label>
                     <Form.Control type="password" placeholder="Password" value={user.password} onChange={onPasswordChange} />
                 </Form.Group>
                 <Button variant="primary" type="submit" onClick={signInButtonHandler}>

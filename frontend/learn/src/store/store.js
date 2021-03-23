@@ -1,8 +1,8 @@
 import { createStore, combineReducers } from "redux"
-import { Autorization } from "../store/reducers/user/UserReducer"
+import { autorization } from "../store/reducers/user/UserReducer"
 
 const rootReducer = combineReducers({
-    Autorization
+    autorization
 })
 
 export const store = createStore(rootReducer)
