@@ -40,7 +40,7 @@ export const ProductCard = (props) => {
         <div style={cardBody}>
             <div style={nameBody}>{name}</div>
             <div style={imageBodyWrapper}>
-                <img style={imageBody} src={imageUrl} />
+                <img style={imageBody} src={imageUrl} alt="product img"/>
             </div>
             <div style={priceBody}>
                 {price} {currency} <Button variant="info">{addInBasketButtonName}</Button>

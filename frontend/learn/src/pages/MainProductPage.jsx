@@ -1,34 +1,46 @@
 import React from "react"
 import { ProductCard } from "../components/product-card/ProductCard"
 import { Container, Row, Col } from "react-bootstrap"
-import { getProducts } from "../services/product-service/ProductService"
-
 
 const pageBody = {
     marginLeft: "17%",
-    marginTop: "10px",
     height: "auto",
 }
 
-export const MainProductPage = () => {
+const rowStyle = {
+    marginTop: "10px",
+}
 
-    const products = getProducts()
-    let cards = []
-    products.forEach(function (item, i, arr) {
-        cards.push(
-            <Row >
-                <Col lg={"auto"}><ProductCard value={products[i]} /></Col>
-            </Row>)
+export const MainProductPage = (props) => {
+
+    const products = props.value
+    let columns = []
+    let rows = []
+    let buffer = []
+
+    products.forEach(function (item, i) {
+        columns.push(
+            <Col lg={"auto"} key={i}><ProductCard key={i} value={item} /></Col>
+        )
+    })
+
+
+    columns.forEach(function (item, i) {
+        if (i % 3 === 0 && i !== 0) {
+            rows.push(<Row key={i} style={rowStyle} >{buffer}</Row>)
+            buffer = []
+        }
+        buffer.push(item)
+        if (i === columns.length - 1) {
+            rows.push(<Row key={i} style={rowStyle} >{buffer}</Row>)
+        }
     })
 
     return (
         <>
             <div style={pageBody}>
                 <Container>
-
-                    <Row >
-                        <Col lg={"auto"}><ProductCard value={products[0]} /></Col>
-                    </Row>
+                    {rows}
                 </Container>
             </div>
         </>)
