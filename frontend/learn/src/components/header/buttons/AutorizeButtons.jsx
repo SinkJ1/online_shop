@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import { Button } from "react-bootstrap"
-import { AutorizeModal } from "../modals/AutorizeModal";
-import { SignInContent } from "../modals/content/SignInContent";
-import { RegistrationContent } from "../modals/content/RegistrationContent";
+import { ModalWindow } from "../../common/modal-window/ModalWindow"
+import { SignInContent } from "../modal-window-content/SignInContent"
+import { RegistrationContent } from "../modal-window-content/RegistrationContent"
 
 const signInButtonName = "Вход"
 const registrationButtonName = "Регистрация"
@@ -20,18 +20,18 @@ export const AutorizeButtons = () => {
     const signInHandler = () => {
         setModalShow(true)
         setModalName(signInButtonName)
-        setContent(<SignInContent onHide={onHide}/>)
+        setContent(<SignInContent onHide={onHide} />)
     }
 
     const registrationHandler = () => {
         setModalShow(true)
         setModalName(registrationButtonName)
-        setContent(<RegistrationContent onHide={onHide}/>)
+        setContent(<RegistrationContent onHide={onHide} />)
     }
 
     return (
         <>
-            <AutorizeModal
+            <ModalWindow
                 show={modalShow}
                 operationname={modalName}
                 onHide={onHide}

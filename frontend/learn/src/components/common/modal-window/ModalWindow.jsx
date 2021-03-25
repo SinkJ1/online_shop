@@ -1,11 +1,11 @@
 import React from "react"
 import { Modal } from "react-bootstrap"
 
-export const AutorizeModal = (props) => {
+export const ModalWindow = (props) => {
     return (
         <Modal
             {...props}
-            size="lg"
+            size="auto"
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
@@ -19,5 +19,4 @@ export const AutorizeModal = (props) => {
             </Modal.Body>
         </Modal>
     );
-
 }

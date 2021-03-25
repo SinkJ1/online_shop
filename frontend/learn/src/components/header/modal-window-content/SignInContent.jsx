@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Form, Button } from "react-bootstrap"
 import { useDispatch } from "react-redux"
-import { signIn } from "../../../../store/reducers/user/UserReducer"
+import { signIn } from "../../../store/reducers/user/UserReducer"
 
 
 const signInButtonName = "Войти"
